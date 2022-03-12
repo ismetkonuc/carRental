@@ -4,7 +4,7 @@ using CarRental.Entities.Concrete;
 
 namespace CarRental.DataAccess.Concrete.EntityFrameworkCore.Repositories
 {
-    public class EfBrandRepository : EfGenericRepository<Brand, CarRentalDbContext>
+    public class EfBrandRepository : EfGenericRepository<Brand, CarRentalDbContext>, IBrandDal
     {
 
     }
