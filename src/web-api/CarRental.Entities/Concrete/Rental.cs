@@ -13,6 +13,7 @@ namespace CarRental.Entities.Concrete
         public DateTime ReturnDate { get; set; }
 
 
+        public int CarId { get; set; }
         public Car Car { get; set; }
 
         public int AppUserId { get; set; }
