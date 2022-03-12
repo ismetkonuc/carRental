@@ -9,12 +9,13 @@ namespace CarRental.DataAccess.Concrete.EntityFrameworkCore.Contexts
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server = DESKTOP - 0GDA6G3; Database = lms; User Id = sa; Password = 1;");
+            optionsBuilder.UseSqlServer("Server = DESKTOP-0GDA6G3; Database = CarRental; User Id = sa; Password = 1;");
             base.OnConfiguring(optionsBuilder);
         }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+
 
             builder.ApplyConfiguration(new CarConfiguration());
             builder.ApplyConfiguration(new RentalConfiguration());
