@@ -2,33 +2,34 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using CarRental.Business.Interfaces;
+using CarRental.Core.Utils.Results;
 using CarRental.Entities.Concrete;
 
 namespace CarRental.Business.Concrete
 {
     public class BrandManager : IBrandService
     {
-        public void Add(Brand entity)
+        public IResult Add(Brand entity)
         {
             throw new NotImplementedException();
         }
 
-        public void Update(Brand entity)
+        public IResult Update(Brand entity)
         {
             throw new NotImplementedException();
         }
 
-        public void Delete(Brand entity)
+        public IResult Delete(Brand entity)
         {
             throw new NotImplementedException();
         }
 
-        public List<Brand> GetAll(Expression<Func<Brand, bool>> filter = null)
+        public IDataResult<List<Brand>> GetAll(Expression<Func<Brand, bool>> filter = null)
         {
             throw new NotImplementedException();
         }
 
-        public Brand Get(Expression<Func<Brand, bool>> filter)
+        public IDataResult<Brand> Get(Expression<Func<Brand, bool>> filter)
         {
             throw new NotImplementedException();
         }
