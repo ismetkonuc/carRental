@@ -1,4 +1,4 @@
-﻿namespace CarRental.Entities.Interfaces
+﻿namespace CarRental.Core.Entities
 {
     public interface IBaseEntity
     {

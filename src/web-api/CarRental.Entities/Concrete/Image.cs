@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Security.AccessControl;
-using CarRental.Entities.Interfaces;
+﻿using CarRental.Core.Entities;
+using System.Collections.Generic;
+
 
 namespace CarRental.Entities.Concrete
 {

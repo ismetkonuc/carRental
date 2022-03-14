@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using CarRental.Entities.Interfaces;
+using CarRental.Core.Entities;
 
 namespace CarRental.Entities.Concrete
 {

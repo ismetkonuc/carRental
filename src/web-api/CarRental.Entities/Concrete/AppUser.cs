@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using CarRental.Entities.Interfaces;
+using CarRental.Core.Entities;
 using Microsoft.AspNetCore.Identity;
 
 namespace CarRental.Entities.Concrete

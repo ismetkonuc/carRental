@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using CarRental.Entities.Enums;
-using CarRental.Entities.Interfaces;
+using CarRental.Core.Entities;
+
 
 namespace CarRental.Entities.Concrete
 {

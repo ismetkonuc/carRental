@@ -1,6 +1,5 @@
 ﻿using System;
-using System.Security.AccessControl;
-using CarRental.Entities.Interfaces;
+using CarRental.Core.Entities;
 
 namespace CarRental.Entities.Concrete
 {
