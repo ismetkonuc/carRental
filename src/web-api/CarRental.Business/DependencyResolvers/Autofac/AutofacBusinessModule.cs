@@ -29,6 +29,7 @@ namespace CarRental.Business.DependencyResolvers.Autofac
 
 
             var assembly = Assembly.GetExecutingAssembly();
+            
             builder.RegisterAssemblyTypes(assembly)
                 .AsImplementedInterfaces()
                 .EnableInterfaceInterceptors(

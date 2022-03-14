@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using System.Reflection;
-using CarRental.Core.Aspects.Autofac.Performance;
 using Castle.DynamicProxy;
 
 namespace CarRental.Core.Utils.Interceptors
@@ -10,11 +9,11 @@ namespace CarRental.Core.Utils.Interceptors
     {
         public IInterceptor[] SelectInterceptors(Type type, MethodInfo method, IInterceptor[] interceptors)
         {
-            var classAttributes = type.GetCustomAttributes<MethodInterceptionBaseAttribute>(true).ToList();
-            var methodAttributes =
-                type.GetMethod(method.Name).GetCustomAttributes<MethodInterceptionBaseAttribute>(true);
+            var classAttributes = type.GetCustomAttributes<MethodInterceptionBaseAttribute>
+                (true).ToList();
+            var methodAttributes = type.GetMethod(method.Name)
+                .GetCustomAttributes<MethodInterceptionBaseAttribute>(true);
             classAttributes.AddRange(methodAttributes);
-            classAttributes.Add(new PerformanceAspect(5));
 
             return classAttributes.OrderBy(x => x.Priority).ToArray();
         }
