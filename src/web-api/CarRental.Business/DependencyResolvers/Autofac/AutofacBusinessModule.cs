@@ -27,6 +27,8 @@ namespace CarRental.Business.DependencyResolvers.Autofac
             builder.RegisterType<RentalManager>().As<IRentalService>().SingleInstance();
             builder.RegisterType<EfRentalRepository>().As<IRentalDal>().SingleInstance();
 
+            builder.RegisterType<AppUserManager>().As<IAppUserService>().SingleInstance();
+            builder.RegisterType<EfAppUserRepository>().As<IAppUserDal>().SingleInstance();
 
             var assembly = Assembly.GetExecutingAssembly();
             
