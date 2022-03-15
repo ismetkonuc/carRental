@@ -3,6 +3,6 @@
     public enum GearType
     {
         Manual,
-        Autiomatic
+        Automatic
     }
 }
