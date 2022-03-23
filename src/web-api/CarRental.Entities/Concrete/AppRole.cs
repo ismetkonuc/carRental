@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace CarRental.Entities.Concrete
 {
-    public class AppRole : IdentityRole<int>, IBaseEntity
+    public class AppRole : AppRoleBase
     {
         
     }

@@ -1,14 +1,13 @@
 ﻿using System.Collections.Generic;
+using System.Security.Claims;
 using CarRental.Core.Entities;
 using Microsoft.AspNetCore.Identity;
 
 namespace CarRental.Entities.Concrete
 {
-    public class AppUser : IdentityUser<int>, IBaseEntity
+    public class AppUser : AppUserBase
     {
-        public string Name { get; set; }
-        public string Surname { get; set; }
-
         public List<Rental> Rentals { get; set; }
+
     }
 }
