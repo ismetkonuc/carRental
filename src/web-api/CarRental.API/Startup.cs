@@ -1,15 +1,19 @@
+using CarRental.API.Initializers;
+using CarRental.Core.Utils.IoC;
+using CarRental.Core.Utils.Security.Encryption;
+using CarRental.DataAccess.Concrete.EntityFrameworkCore.Contexts;
+using CarRental.Entities.Concrete;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using TokenOptions = CarRental.Core.Utils.Security.JWT.TokenOptions;
 
 namespace CarRental.API
 {
@@ -26,6 +30,35 @@ namespace CarRental.API
         public void ConfigureServices(IServiceCollection services)
         {
 
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+            services.AddDbContext<CarRentalDbContext>();
+            services.AddIdentity<AppUser, AppRole>(opt =>
+            {
+                opt.Password.RequireDigit = false;
+                opt.Password.RequireLowercase = false;
+                opt.Password.RequireNonAlphanumeric = false;
+                opt.Password.RequiredLength = 1;
+                opt.Password.RequireUppercase = false;
+            }).AddEntityFrameworkStores<CarRentalDbContext>().AddSignInManager<SignInManager<AppUser>>();
+
+            var tokenOptions = Configuration.GetSection("TokenOptions").Get<TokenOptions>();
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    options.TokenValidationParameters = new TokenValidationParameters()
+                    {
+                        ValidateIssuer = true,
+                        ValidateAudience = true,
+                        ValidateLifetime = true,
+                        ValidIssuer = tokenOptions.Issuer,
+                        ValidAudience = tokenOptions.Audience,
+                        ValidateIssuerSigningKey = true,
+                        IssuerSigningKey = SecurityKeyHelper.CreateSecurityKey(tokenOptions.SecurityKey)
+                    };
+                });
+            ServiceTool.Create(services);
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -34,7 +67,7 @@ namespace CarRental.API
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, UserManager<AppUser> userManager, RoleManager<AppRole> roleManager)
         {
             if (env.IsDevelopment())
             {
@@ -45,7 +78,12 @@ namespace CarRental.API
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
+
+            IdentityInitializer.SeedData(userManager, roleManager).Wait();
+            BrandInitializer.EnsurePopulated(app);
+            CarInitializer.EnsurePopulated(app);
 
             app.UseEndpoints(endpoints =>
             {
