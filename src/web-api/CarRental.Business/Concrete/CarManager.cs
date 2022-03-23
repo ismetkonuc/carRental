@@ -1,14 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq.Expressions;
-using CarRental.Business.Interfaces;
+﻿using CarRental.Business.Interfaces;
 using CarRental.Business.ValidationRules.FluentValidation;
 using CarRental.Core.Aspects.Autofac.Validation;
-using CarRental.Core.CrossCuttingConcerns.Validation;
+using CarRental.Core.Utils.Business;
 using CarRental.Core.Utils.Results;
 using CarRental.DataAccess.Interfaces;
 using CarRental.Entities.Concrete;
-using FluentValidation;
+using System;
+using System.Collections.Generic;
+using System.Linq.Expressions;
+using CarRental.Business.BusinessAspects.Autofac;
 
 namespace CarRental.Business.Concrete
 {
@@ -21,12 +21,13 @@ namespace CarRental.Business.Concrete
             _carDal = carDal;
         }
 
+
+        [SecuredOperation("Admin")]
         [ValidationAspect(typeof(CarValidator))]
         public IResult Add(Car entity)
         {
-
+            BusinessRules.Run();
             _carDal.Add(entity);
-
             return new SuccessResult(true);
         }
 

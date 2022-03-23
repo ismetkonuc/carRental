@@ -4,9 +4,11 @@ using Autofac.Extras.DynamicProxy;
 using CarRental.Business.Concrete;
 using CarRental.Business.Interfaces;
 using CarRental.Core.Utils.Interceptors;
+using CarRental.Core.Utils.Security.JWT;
 using CarRental.DataAccess.Concrete.EntityFrameworkCore.Repositories;
 using CarRental.DataAccess.Interfaces;
 using Castle.DynamicProxy;
+using Microsoft.AspNetCore.Http;
 using Module = Autofac.Module;
 
 namespace CarRental.Business.DependencyResolvers.Autofac
@@ -29,6 +31,9 @@ namespace CarRental.Business.DependencyResolvers.Autofac
 
             builder.RegisterType<AppUserManager>().As<IAppUserService>().SingleInstance();
             builder.RegisterType<EfAppUserRepository>().As<IAppUserDal>().SingleInstance();
+
+            builder.RegisterType<AuthManager>().As<IAuthService>().SingleInstance();
+            builder.RegisterType<JwtHelper>().As<ITokenHelper>();
 
             var assembly = Assembly.GetExecutingAssembly();
             

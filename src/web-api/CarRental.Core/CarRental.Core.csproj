@@ -11,13 +11,22 @@
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="7.2.0" />
     <PackageReference Include="Autofac.Extras.DynamicProxy" Version="6.0.1" />
     <PackageReference Include="FluentValidation" Version="10.4.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.14" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.14" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Identity.Stores" Version="5.0.14" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Aspects\Autofac\Validation\" />
     <Folder Include="CrossCuttingConcerns\Validation\" />
+    <Folder Include="Extensions\" />
+    <Folder Include="Utils\Business\" />
+    <Folder Include="Utils\IoC\" />
     <Folder Include="Utils\Results\" />
+    <Folder Include="Utils\Security\JWT\" />
+    <Folder Include="Utils\Security\Encryption\" />
   </ItemGroup>
 
 </Project>
