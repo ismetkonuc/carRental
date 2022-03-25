@@ -51,5 +51,14 @@ namespace CarRental.API.Controllers
 
             return BadRequest(result.Message);
         }
+
+        [HttpGet("logout")]
+        public ActionResult Logout()
+        {
+            var logoutResult = _authService.Logout();
+
+            return Ok(logoutResult);
+
+        }
     }
 }

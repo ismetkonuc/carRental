@@ -6,19 +6,22 @@ using CarRental.Entities.Concrete;
 using CarRental.Entities.Dtos;
 using Microsoft.AspNetCore.Identity;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace CarRental.Business.Concrete
 {
     public class AuthManager : IAuthService
     {
         private readonly UserManager<AppUser> _userManager;
+        private readonly RoleManager<AppRole> _roleManager;
         private readonly ITokenHelper _tokenHelper;
         private readonly SignInManager<AppUser> _signInManager;
-        public AuthManager(UserManager<AppUser> userManager, ITokenHelper tokenHelper, SignInManager<AppUser> signInManager)
+        public AuthManager(UserManager<AppUser> userManager, ITokenHelper tokenHelper, SignInManager<AppUser> signInManager, RoleManager<AppRole> roleManager)
         {
             _userManager = userManager;
             _tokenHelper = tokenHelper;
             _signInManager = signInManager;
+            _roleManager = roleManager;
         }
 
         public IDataResult<AppUser> Register(UserForRegisterDto userForRegisterDto, string password)
@@ -34,10 +37,12 @@ namespace CarRental.Business.Concrete
             {
                 Name = userForRegisterDto.FirstName,
                 Surname = userForRegisterDto.LastName,
-                Email = userForRegisterDto.Email
+                Email = userForRegisterDto.Email,
+                UserName = userForRegisterDto.Email
             };
 
-            _userManager.CreateAsync(registeredUser, userForRegisterDto.Password);
+            _userManager.CreateAsync(registeredUser, userForRegisterDto.Password).Wait();
+            _userManager.AddToRoleAsync(registeredUser, "Member").Wait();
             return new SuccessDataResult<AppUser>(registeredUser, true, Messages.UserRegistered);
         }
 
@@ -75,6 +80,19 @@ namespace CarRental.Business.Concrete
             var roles = _userManager.GetRolesAsync(user).Result.ToList();
             var accessToken = _tokenHelper.CreateToken(user, roles);
             return new SuccessDataResult<AccessToken>(accessToken, true, Messages.AccessTokenCreated);
+        }
+
+        public IResult Logout()
+        {
+            var isCompletedSuccessfully = _signInManager.SignOutAsync().IsCompletedSuccessfully;
+
+            if (isCompletedSuccessfully)
+            {
+                return new SuccessResult(true, Messages.SuccessfulLogout);
+            }
+
+            return new ErrorResult(false);
+
         }
     }
 }
