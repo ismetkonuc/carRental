@@ -19,9 +19,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Aspects\Autofac\Caching\" />
     <Folder Include="Aspects\Autofac\Validation\" />
+    <Folder Include="CrossCuttingConcerns\Caching\Microsoft\" />
     <Folder Include="CrossCuttingConcerns\Validation\" />
     <Folder Include="Extensions\" />
+    <Folder Include="DependencyResolvers\" />
     <Folder Include="Utils\Business\" />
     <Folder Include="Utils\IoC\" />
     <Folder Include="Utils\Results\" />
