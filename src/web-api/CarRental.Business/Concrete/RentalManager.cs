@@ -38,12 +38,21 @@ namespace CarRental.Business.Concrete
 
         public IDataResult<List<Rental>> GetAll(Expression<Func<Rental, bool>> filter = null)
         {
-            throw new NotImplementedException();
+
+            var rentals = _rentalDal.GetAll();
+
+            return new DataResult<List<Rental>>(rentals, true);
+
+
+            //throw new NotImplementedException();
         }
 
         public IDataResult<Rental> Get(Expression<Func<Rental, bool>> filter)
         {
-            throw new NotImplementedException();
+            var rental = _rentalDal.Get(filter);
+
+            return new DataResult<Rental>(rental, true);
+
         }
     }
 }
