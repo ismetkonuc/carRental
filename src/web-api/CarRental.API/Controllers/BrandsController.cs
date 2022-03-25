@@ -46,8 +46,15 @@ namespace CarRental.API.Controllers
                 return BadRequest(error: result.Message);
             }
 
+
             return Ok(result);
 
+        }
+
+        [HttpGet("getall")]
+        public ActionResult GetAll()
+        {
+            return Ok(_brandService.GetAll());
         }
 
     }
