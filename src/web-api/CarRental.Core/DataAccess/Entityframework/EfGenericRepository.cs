@@ -30,9 +30,6 @@ namespace CarRental.Core.DataAccess.Entityframework
             var entityToUpdate = context.Entry(entity);
             entityToUpdate.State = EntityState.Modified;
             context.SaveChanges();
-
-            throw new NotImplementedException();
-
         }
 
         public void Delete(TEntity entity)
@@ -42,8 +39,6 @@ namespace CarRental.Core.DataAccess.Entityframework
             var entityToDelete = context.Entry(entity);
             entityToDelete.State = EntityState.Deleted;
             context.SaveChanges();
-
-            throw new NotImplementedException();
         }
 
         public List<TEntity> GetAll(Expression<Func<TEntity, bool>> filter = default)

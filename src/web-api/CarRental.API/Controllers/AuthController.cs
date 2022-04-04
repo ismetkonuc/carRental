@@ -1,5 +1,5 @@
 ﻿using CarRental.Business.Interfaces;
-using CarRental.Entities.Dtos;
+using CarRental.Entities.Dtos.AppUser;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CarRental.API.Controllers
