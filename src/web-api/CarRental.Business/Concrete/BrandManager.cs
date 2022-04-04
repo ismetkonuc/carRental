@@ -52,7 +52,7 @@ namespace CarRental.Business.Concrete
             Brand convertedEntity = _mapper.Map<Brand>(entity);
             var result = BusinessRules.Run(CheckBrandPresence(convertedEntity.Name));
 
-            if (result == null)
+            if (result != null)
             {
                 _brandDal.Update(convertedEntity);
                 return new SuccessResult(true, Messages.EntityUpdated);
@@ -105,7 +105,7 @@ namespace CarRental.Business.Concrete
 
         private IResult CheckBrandPresence(string brandName)
         {
-            Brand brand = _brandDal.Get(I => I.Name.Equals(brandName));
+            Brand brand = _brandDal.Get(I => I.Name.ToUpper().Equals(brandName.ToUpper()));
 
             if (brand != null)
             {
