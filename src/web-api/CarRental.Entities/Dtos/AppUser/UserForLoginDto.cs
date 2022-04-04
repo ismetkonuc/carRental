@@ -1,6 +1,6 @@
 ﻿using CarRental.Core.Entities;
 
-namespace CarRental.Entities.Dtos
+namespace CarRental.Entities.Dtos.AppUser
 {
     public class UserForLoginDto : IDto
     {

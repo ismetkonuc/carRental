@@ -1,4 +1,5 @@
 using CarRental.API.Initializers;
+using CarRental.Business;
 using CarRental.Core.DependencyResolvers;
 using CarRental.Core.Extensions;
 using CarRental.Core.Utils.IoC;
@@ -31,6 +32,7 @@ namespace CarRental.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAutoMapper(typeof(Startup));
             services.AddDbContext<CarRentalDbContext>();
             services.AddIdentity<AppUser, AppRole>(opt =>
             {
@@ -58,7 +60,7 @@ namespace CarRental.API
                 });
 
             services.AddDependencyResolvers(new ICoreModule[] {new CoreModule()});
-
+            services.AddBusinessServices();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
