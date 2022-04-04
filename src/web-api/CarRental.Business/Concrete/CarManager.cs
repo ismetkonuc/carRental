@@ -26,7 +26,7 @@ namespace CarRental.Business.Concrete
         }
 
         [SecuredOperation("Admin")]
-        [ValidationAspect(typeof(CarValidator))]
+        [ValidationAspect(typeof(CarInsertValidator))]
         public IResult Add(CarInsertDto entity)
         {
             var convertedEntity = _mapper.Map<Car>(entity);
@@ -35,7 +35,7 @@ namespace CarRental.Business.Concrete
         }
 
         [SecuredOperation("Admin")]
-        [ValidationAspect(typeof(CarValidator))]
+        [ValidationAspect(typeof(CarUpdateValidator))]
         public IResult Update(CarUpdateDto entity)
         {
             var convertedEntity = _mapper.Map<Car>(entity);
@@ -46,7 +46,7 @@ namespace CarRental.Business.Concrete
                 _carDal.Update(car);
                 return new SuccessResult(true, Messages.EntityUpdated);
             }
-
+            
             return new ErrorResult(false, Messages.EntityNotFound);
 
         }

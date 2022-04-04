@@ -1,11 +1,11 @@
-﻿using CarRental.Entities.Concrete;
+﻿using CarRental.Entities.Dtos.Car;
 using FluentValidation;
 
 namespace CarRental.Business.ValidationRules.FluentValidation
 {
-    public class CarValidator : AbstractValidator<Car>
+    public class CarUpdateValidator : AbstractValidator<CarUpdateDto>
     {
-        public CarValidator()
+        public CarUpdateValidator()
         {
             RuleFor(I => I.Price).NotEmpty();
             RuleFor(I => I.Price).GreaterThan(0);
