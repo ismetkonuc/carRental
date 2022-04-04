@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using CarRental.Core.Entities;
 using CarRental.Entities.Concrete;
+using CarRental.Entities.Dtos.Image;
 using CarRental.Entities.Enums;
 
 namespace CarRental.Entities.Dtos.Car
@@ -17,6 +18,6 @@ namespace CarRental.Entities.Dtos.Car
         public bool IsReserved { get; set; } = false;
         public decimal Price { get; set; }
         public int BrandId { get; set; }
-        public List<Image> Images { get; set; }
+        public List<ImageGetDto> Images { get; set; }
     }
 }

@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <Folder Include="Dtos\Car\" />
+    <Folder Include="Dtos\Image\" />
     <Folder Include="Dtos\Rental\" />
   </ItemGroup>
 

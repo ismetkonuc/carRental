@@ -2,6 +2,7 @@
 using CarRental.Entities.Concrete;
 using CarRental.Entities.Dtos.Brand;
 using CarRental.Entities.Dtos.Car;
+using CarRental.Entities.Dtos.Image;
 using CarRental.Entities.Dtos.Rental;
 
 namespace CarRental.Business.Mapping.AutoMapper
@@ -41,6 +42,17 @@ namespace CarRental.Business.Mapping.AutoMapper
 
             CreateMap<Car, CarUpdateDto>();
             CreateMap<CarUpdateDto, Car>();
+
+            //Image Mapping
+
+            CreateMap<Image, ImageGetDto>();
+            CreateMap<ImageGetDto, Image>();
+
+            CreateMap<ImageInsertDto, Image>();
+            CreateMap<Image, CarInsertDto>();
+            
+            CreateMap<Image, ImageUpdateDto>();
+            CreateMap<ImageUpdateDto, Image>();
 
 
         }
