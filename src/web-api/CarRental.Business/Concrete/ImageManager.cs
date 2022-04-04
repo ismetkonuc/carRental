@@ -28,7 +28,7 @@ namespace CarRental.Business.Concrete
             throw new NotImplementedException();
         }
 
-        public IResult Delete(Image entity)
+        public IResult Delete(int id)
         {
             throw new NotImplementedException();
         }

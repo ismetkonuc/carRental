@@ -19,7 +19,7 @@ namespace CarRental.Business.Concrete
             throw new NotImplementedException();
         }
 
-        public IResult Delete(AppUser entity)
+        public IResult Delete(int id)
         {
             throw new NotImplementedException();
         }

@@ -3,7 +3,7 @@ using CarRental.Business.Interfaces;
 using CarRental.Core.Utils.Results;
 using CarRental.Core.Utils.Security.JWT;
 using CarRental.Entities.Concrete;
-using CarRental.Entities.Dtos;
+using CarRental.Entities.Dtos.AppUser;
 using Microsoft.AspNetCore.Identity;
 using System.Linq;
 using System.Threading.Tasks;

@@ -2,7 +2,7 @@
 using CarRental.Core.Utils.Results;
 using CarRental.Core.Utils.Security.JWT;
 using CarRental.Entities.Concrete;
-using CarRental.Entities.Dtos;
+using CarRental.Entities.Dtos.AppUser;
 
 namespace CarRental.Business.Interfaces
 {
