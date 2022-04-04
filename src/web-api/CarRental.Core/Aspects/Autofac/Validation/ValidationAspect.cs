@@ -2,6 +2,7 @@
 using System.Linq;
 using CarRental.Core.CrossCuttingConcerns.Validation;
 using CarRental.Core.Utils.Interceptors;
+using CarRental.Core.Utils.Results;
 using Castle.DynamicProxy;
 using FluentValidation;
 
@@ -29,6 +30,11 @@ namespace CarRental.Core.Aspects.Autofac.Validation
             {
                 ValidationTool.Validate(validator, entity);
             }
+        }
+
+        protected override void OnException(IInvocation invocation, Exception e)
+        {
+            invocation.ReturnValue = new ErrorResult(false, e.Message);
         }
     }
 }

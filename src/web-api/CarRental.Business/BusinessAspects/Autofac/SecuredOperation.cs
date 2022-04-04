@@ -3,6 +3,7 @@ using CarRental.Business.Constants;
 using CarRental.Core.Extensions;
 using CarRental.Core.Utils.Interceptors;
 using CarRental.Core.Utils.IoC;
+using CarRental.Core.Utils.Results;
 using Castle.DynamicProxy;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
@@ -33,7 +34,13 @@ namespace CarRental.Business.BusinessAspects.Autofac
                     return;
                 }
             }
+
             throw new Exception(Messages.AuthorizationDenied);
+        }
+
+        protected override void OnException(IInvocation invocation, Exception e)
+        {
+            invocation.ReturnValue = new ErrorResult(false, e.Message);
         }
     }
 }

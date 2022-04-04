@@ -12,16 +12,15 @@ namespace CarRental.Core.Utils.Interceptors
         public override void Intercept(IInvocation invocation)
         {
             var isSuccess = true;
-            OnBefore(invocation);
             try
             {
+                OnBefore(invocation);
                 invocation.Proceed();
             }
             catch (Exception e)
             {
                 isSuccess = false;
                 OnException(invocation, e);
-                throw;
             }
             finally
             {
