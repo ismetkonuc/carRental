@@ -59,6 +59,8 @@ namespace CarRental.API
                     };
                 });
 
+            services.AddCors();
+            
             services.AddDependencyResolvers(new ICoreModule[] {new CoreModule()});
             services.AddBusinessServices();
             services.AddControllers();
@@ -71,6 +73,9 @@ namespace CarRental.API
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, UserManager<AppUser> userManager, RoleManager<AppRole> roleManager)
         {
+
+            app.UseCors(options => options.WithOrigins("http://localhost:4200").AllowAnyMethod().AllowAnyHeader().AllowCredentials());
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

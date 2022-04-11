@@ -46,6 +46,41 @@ namespace CarRental.API.Controllers
             return BadRequest(result);
         }
 
+
+        [HttpGet(template: "type/{type}", Name = "GetByType")]
+        [ProducesResponseType(typeof(IDataResult<List<CarGetDto>>), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(IDataResult<List<CarGetDto>>), (int)HttpStatusCode.BadRequest)]
+        public IActionResult GetByType(CarType type)
+        {
+            var result = _carService.GetAll(I => I.CarType == type);
+
+            if (result.IsSuccess)
+            {
+                return Ok(result);
+            }
+
+            return BadRequest(result);
+        }
+
+
+        [HttpGet(template: "name/{name}", Name = "GetByName")]
+        [ProducesResponseType(typeof(IDataResult<List<CarGetDto>>), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(IDataResult<List<CarGetDto>>), (int)HttpStatusCode.BadRequest)]
+        public IActionResult GetByName(string name)
+        {
+            //var result = _carService.GetAll(I => I.Name.ToUpper() == name.ToUpper());
+            var result = _carService.GetAll(I => I.Name.ToUpper().Contains(name.ToUpper()));
+            
+
+            if (result.IsSuccess)
+            {
+                return Ok(result);
+            }
+
+            return BadRequest(result);
+
+        }
+
         [HttpPost(template: "", Name = "Add")]
         [ProducesResponseType(typeof(IResult), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(IResult), (int)HttpStatusCode.BadRequest)]
