@@ -10,6 +10,7 @@ using CarRental.Entities.Concrete;
 using CarRental.Entities.Dtos.Car;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 
 namespace CarRental.Business.Concrete
@@ -18,11 +19,13 @@ namespace CarRental.Business.Concrete
     {
         private readonly ICarDal _carDal;
         private readonly IMapper _mapper;
+        private readonly IBrandDal _brandDal;
 
-        public CarManager(ICarDal carDal, IMapper mapper)
+        public CarManager(ICarDal carDal, IMapper mapper, IBrandDal brandDal)
         {
             _carDal = carDal;
             _mapper = mapper;
+            _brandDal = brandDal;
         }
 
         [SecuredOperation("Admin")]
@@ -69,6 +72,7 @@ namespace CarRental.Business.Concrete
         {
             var cars = _carDal.GetAll(filter);
             var convertedEntities = _mapper.Map<List<CarGetDto>>(cars);
+            convertedEntities.Where(I => I.Id > 0).ToList().ForEach(s => s.BrandName = GetBrandNameWithBrandId(s.BrandId));
             return new DataResult<List<CarGetDto>>(convertedEntities, true);
         }
 
@@ -76,7 +80,13 @@ namespace CarRental.Business.Concrete
         {
             var car = _carDal.Get(filter);
             var convertedEntity = _mapper.Map<CarGetDto>(car);
+            convertedEntity.BrandName = GetBrandNameWithBrandId(convertedEntity.Id);
             return new DataResult<CarGetDto>(convertedEntity, true);
+        }
+
+        private string GetBrandNameWithBrandId(int brandId)
+        {
+            return _brandDal.Get(I => I.Id == brandId).Name;
         }
     }
 }

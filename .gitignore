@@ -349,3 +349,4 @@ MigrationBackup/
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
 /src/web-api/CarRental.DataAccess/Migrations
+/src/ui/CarRentalUI/src/assets/img
