@@ -11,6 +11,10 @@ import { SignUpComponent } from './pages/sign-up/sign-up.component';
 import { LoginComponent } from './pages/login/login.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { HeaderComponent } from './components/header/header.component';
+import { HttpClientModule } from '@angular/common/http';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { SearchPipe } from './core/pipes/search.pipe';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -22,11 +26,17 @@ import { HeaderComponent } from './components/header/header.component';
     SignUpComponent,
     DashboardComponent,
     NotFoundComponent,
-    HeaderComponent
+    HeaderComponent,
+    SearchPipe,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FontAwesomeModule,
+    FormsModule
+
+
   ],
   providers: [],
   bootstrap: [AppComponent]

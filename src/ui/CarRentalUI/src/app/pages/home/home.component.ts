@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CarType } from 'src/app/core/models/Enums/CarType';
+import { CarService } from 'src/app/core/services/car-service/car.service';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  searchString = '';
+  cars = ['Polo', 'Fabia', 'E200', 'XC90', 'Zoe', 'Clio']
+  constructor(private carService:CarService) { }
 
   ngOnInit(): void {
   }
+
+  sendCarTypeToPipe(type:CarType){
+    this.carService.iterateCarPipe(type)
+  }
+
+  
 
 }

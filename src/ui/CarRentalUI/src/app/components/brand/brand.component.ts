@@ -1,4 +1,6 @@
+import { ThisReceiver } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
+import { BrandService } from 'src/app/core/services/brand-service/brand.service';
 
 @Component({
   selector: 'app-brand',
@@ -7,9 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BrandComponent implements OnInit {
 
-  constructor() { }
+  brands : any;
+  constructor(private brandService:BrandService) { }
 
   ngOnInit(): void {
+    this.brandService.getBrands().subscribe((v) => console.info(v));
   }
 
 }

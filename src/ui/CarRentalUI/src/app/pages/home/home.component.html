@@ -1,1 +1,78 @@
-<p>home works!</p>
+<div class="container-fluid mtb15 no-fluid">
+    <div class="row sm-gutters">
+        <div class="container mt-4">
+            <div class="row d-flex justify-content-center">
+                <div class="col-md-12">
+                    <div class="card p-4 mt-3">
+                        <h3 class="heading mt-5 text-center">Kiralamak istediğiniz bir marka veya model arayın...</h3>
+                        <div class="d-flex justify-content-center px-5">
+                            <div class="search"> <input type="search" class="search-input form-control"
+                                    placeholder="Ara..." [(ngModel)]="searchString" />
+                            </div>
+                        </div>
+                        <div class="row mt-4 g-1 px-4 mb-5">
+                            <div class="col-md-3">
+                                <div class="card-inner p-3 d-flex flex-column align-items-center"
+                                    (click)='sendCarTypeToPipe(0)'> <img src="../../../assets/img/icon/Sedan.png"
+                                        width="100">
+                                    <div class="text-center mg-text"> <span class="mg-text">Sedan</span> </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card-inner p-3 d-flex flex-column align-items-center"
+                                    (click)='sendCarTypeToPipe(1)'> <img src="../../../assets/img/icon/Hatchback.png"
+                                        width="75">
+                                    <div class="text-center mg-text"> <span class="mg-text">Hatchback</span> </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card-inner p-3 d-flex flex-column align-items-center"
+                                    (click)='sendCarTypeToPipe(2)'> <img src="../../../assets/img/icon/SUV.png"
+                                        width="75">
+                                    <div class="text-center mg-text"> <span class="mg-text">SUV</span> </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card-inner p-3 d-flex flex-column align-items-center"
+                                    (click)='sendCarTypeToPipe(3)'> <img src="../../../assets/img/icon/Sport.png"
+                                        width="75">
+                                    <div class="text-center mg-text"> <span class="mg-text">Spor</span> </div>
+                                </div>
+                            </div>
+                            <!-- <div class="col-md-2">
+                                <div class="card-inner p-3 d-flex flex-column align-items-center"> <img
+                                        src="https://i.imgur.com/Z7BJ8Po.png" width="50">
+                                    <div class="text-center mg-text"> <span class="mg-text">Return</span> </div>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="card-inner p-3 d-flex flex-column align-items-center"> <img
+                                        src="https://i.imgur.com/YLsQrn3.png" width="50">
+                                    <div class="text-center mg-text"> <span class="mg-text">Guarantee</span> </div>
+                                </div>
+                            </div> -->
+                        </div>
+                        <!-- <tr *ngFor="let car of (cars | search:searchString)as folder" >
+                            {{car}}
+                        </tr> -->
+                        <tr *ngFor="let car of (cars | search:searchString)as folder"></tr>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-12">
+            <app-car></app-car>
+        </div>
+    </div>
+</div>
+
+<!-- <div class="container-fluid mtb15 no-fluid">
+    <div class="row sm-gutters">
+        <div class="col-sm-12 col-md-12">
+            <app-brand></app-brand>
+        </div>
+        <div class="col-sm-12 col-md-12">
+            <app-car></app-car>
+        </div>
+    </div>
+</div> -->
